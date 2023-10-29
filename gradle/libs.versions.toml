@@ -6,5 +6,8 @@ kotlin = "1.9.0"
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 jb-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+pfd-jvm = { id = "pfd.jvm", version = "unspecified" }
+pfd-maven = { id = "pfd.maven", version = "unspecified" }
+pfd-signing = { id = "pfd.signing", version = "unspecified" }

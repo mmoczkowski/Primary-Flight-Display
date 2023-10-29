@@ -1,4 +1,7 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         gradlePluginPortal()
@@ -7,7 +10,7 @@ pluginManagement {
     }
     
 }
-rootProject.name = "AttitudeIndicator"
+rootProject.name = "PrimaryFlightDisplay"
 
 include(":library")
 include(":sample")

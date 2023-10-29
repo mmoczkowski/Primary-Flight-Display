@@ -17,17 +17,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.pfd.jvm)
     alias(libs.plugins.jb.compose)
-}
-
-val sampleVersion = "1.0.0"
-group = "com.mmoczkowski.pfd.sample"
-version = sampleVersion
-
-dependencies {
-    implementation(compose.desktop.currentOs)
-    implementation(project(":library"))
 }
 
 compose.desktop {
@@ -36,8 +27,13 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.mmoczkowski.pfd.sample"
-            packageVersion = sampleVersion
+            packageName = group.toString()
+            packageVersion = version.toString()
         }
     }
+}
+
+dependencies {
+    implementation(compose.desktop.currentOs)
+    implementation(projects.library)
 }

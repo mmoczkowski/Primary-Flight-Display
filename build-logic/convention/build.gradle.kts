@@ -1,5 +1,3 @@
-import com.mmoczkowski.chart.moduleFullName
-
 /*
  * Copyright (C) 2023 Miłosz Moczkowski
  *
@@ -16,13 +14,30 @@ import com.mmoczkowski.chart.moduleFullName
  * limitations under the License.
  */
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    alias(libs.plugins.pfd.jvm)
-    alias(libs.plugins.pfd.maven)
-    alias(libs.plugins.pfd.signing)
-    alias(libs.plugins.jb.compose)
+    `kotlin-dsl`
 }
 
+
 dependencies {
-    implementation(compose.desktop.common)
+    implementation(gradleApi())
+}
+
+gradlePlugin {
+    plugins {
+        register("pfd.jvm") {
+            id = "pfd.jvm"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
+        register("pfd.maven") {
+            id = "pfd.maven"
+            implementationClass = "MavenConventionPlugin"
+        }
+        register("pfd.signing") {
+            id = "pfd.signing"
+            implementationClass = "SigningConventionPlugin"
+        }
+    }
 }

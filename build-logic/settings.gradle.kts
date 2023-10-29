@@ -1,13 +1,11 @@
-import com.mmoczkowski.chart.moduleFullName
-
 /*
- * Copyright (C) 2023 Miłosz Moczkowski
+ * Copyright 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,13 +14,17 @@ import com.mmoczkowski.chart.moduleFullName
  * limitations under the License.
  */
 
-plugins {
-    alias(libs.plugins.pfd.jvm)
-    alias(libs.plugins.pfd.maven)
-    alias(libs.plugins.pfd.signing)
-    alias(libs.plugins.jb.compose)
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
 }
 
-dependencies {
-    implementation(compose.desktop.common)
-}
+rootProject.name = "build-logic"
+include(":convention")
