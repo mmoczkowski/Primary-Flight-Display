@@ -1,43 +1,35 @@
-# User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+# IntelliJ IDEA files
+.idea/
+*.iws
+*.iml
+*.ipr
 
-# Generated files
-.idea/**/contentModel.xml
-
-# Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
-
-# Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+# Gradle cache and build directories
 .gradle/
-
-# IntelliJ
-out/
 build/
 
-### Kotlin ###
-# Compiled class file
+# Compiled files
 *.class
-
-# Log file
-*.log
-
-# Package Files #
-*.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
+
+# Logs and databases
+*.log
+*.dat
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temp files
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
