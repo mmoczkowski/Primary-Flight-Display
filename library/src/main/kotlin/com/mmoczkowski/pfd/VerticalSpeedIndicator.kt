@@ -49,7 +49,7 @@ internal fun VerticalSpeedIndicator(
     modifier: Modifier = Modifier,
     maxScaleMagnitude: Int = 5,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
     spacingRegular: Dp = PfdTheme.dimensions.spacingRegular,
 ) {
     BoxWithConstraints(

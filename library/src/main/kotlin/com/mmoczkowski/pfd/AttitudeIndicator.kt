@@ -38,7 +38,7 @@ fun AttitudeIndicator(
     skyColor: Color = PfdTheme.colors.skyColor,
     groundColor: Color = PfdTheme.colors.groundColor,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
     indicatorColor: Color = PfdTheme.colors.indicatorColor,
     indicatorSizeLong: Dp = PfdTheme.dimensions.indicatorSizeLong,
     indicatorSizeShort: Dp = PfdTheme.dimensions.indicatorSizeShort,

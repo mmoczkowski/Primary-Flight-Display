@@ -31,19 +31,20 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.mmoczkowski.pfd.theme.PfdTheme
 
 @Composable
 internal fun Tape(
     value: Float,
-    targetValue: Int,
+    targetValue: Int?,
     modifier: Modifier = Modifier,
     spacing: Dp = PfdTheme.dimensions.spacingLarge,
     textStyle: TextStyle = PfdTheme.typography.regular,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
-    isLeft: Boolean = false,
+    strokeThickness: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
+    indicatorSizeLong: Dp = PfdTheme.dimensions.indicatorSizeLong,
+    indicatorSizeShort: Dp = PfdTheme.dimensions.indicatorSizeShort,
+    isLeftOriented: Boolean = false,
 ) {
     val textMeasurer = rememberTextMeasurer()
 
@@ -53,30 +54,34 @@ internal fun Tape(
         val centerY = (size.height) / 2f
         val centerItemHeight =
             drawText(
-                value.toInt(),
+                number = value.toInt(),
                 y = centerY,
-                (value % 1f),
-                spacing.toPx(),
-                textMeasurer,
-                textStyle,
-                strokeColor,
-                strokeWidth,
-                isLeft = isLeft
+                offset = (value % 1f),
+                spacing = spacing.toPx(),
+                textMeasurer = textMeasurer,
+                textStyle = textStyle,
+                strokeColor = strokeColor,
+                strokeThickness = strokeThickness.toPx(),
+                indicatorSizeLong = indicatorSizeLong.toPx(),
+                indicatorSizeShort = indicatorSizeShort.toPx(),
+                isLeft = isLeftOriented
             )
 
         var y = centerY + centerItemHeight
         var index = 0
         while (y <= size.height + centerItemHeight) {
             y += drawText(
-                value.toInt() - ++index,
+                number = value.toInt() - ++index,
                 y = y,
-                (value % 1f),
-                spacing.toPx(),
-                textMeasurer,
-                textStyle,
-                strokeColor,
-                strokeWidth,
-                isLeft = isLeft
+                offset = (value % 1f),
+                spacing = spacing.toPx(),
+                textMeasurer = textMeasurer,
+                textStyle = textStyle,
+                strokeColor = strokeColor,
+                strokeThickness = strokeThickness.toPx(),
+                indicatorSizeLong = indicatorSizeLong.toPx(),
+                indicatorSizeShort = indicatorSizeShort.toPx(),
+                isLeft = isLeftOriented
             )
         }
 
@@ -84,27 +89,34 @@ internal fun Tape(
         y = centerY - centerItemHeight
         while (y >= -centerItemHeight) {
             y -= drawText(
-                value.toInt() + ++index,
+                number = value.toInt() + ++index,
                 y = y,
-                (value % 1f),
-                spacing.toPx(),
-                textMeasurer,
-                textStyle,
-                strokeColor,
-                strokeWidth,
-                isLeft = isLeft
+                offset = (value % 1f),
+                spacing = spacing.toPx(),
+                textMeasurer = textMeasurer,
+                textStyle = textStyle,
+                strokeColor = strokeColor,
+                strokeThickness = strokeThickness.toPx(),
+                indicatorSizeLong = indicatorSizeLong.toPx(),
+                indicatorSizeShort = indicatorSizeShort.toPx(),
+                isLeft = isLeftOriented
             )
         }
 
-        val strokeWidthPx = 16.dp.toPx()
-        translate(left = if (isLeft) strokeWidthPx / 2 else size.width - strokeWidthPx / 2, top = size.height / 2) {
-            drawLine(
-                color = Color.Magenta,
-                start = Offset(0f, 0f),
-                end = Offset(0f, (value - targetValue) * centerItemHeight),
-                strokeWidth = strokeWidthPx,
-                blendMode = BlendMode.Plus
-            )
+        if (targetValue != null) {
+            val strokeWidthPx = indicatorSizeLong.toPx()
+            translate(
+                left = if (isLeftOriented) strokeWidthPx / 2 else size.width - strokeWidthPx / 2,
+                top = size.height / 2
+            ) {
+                drawLine(
+                    color = Color.Magenta,
+                    start = Offset(0f, 0f),
+                    end = Offset(0f, (value - targetValue) * centerItemHeight),
+                    strokeWidth = strokeWidthPx,
+                    blendMode = BlendMode.Plus
+                )
+            }
         }
     }
 }
@@ -117,7 +129,9 @@ private fun DrawScope.drawText(
     textMeasurer: TextMeasurer,
     textStyle: TextStyle,
     strokeColor: Color,
-    strokeWidth: Dp,
+    strokeThickness: Float,
+    indicatorSizeLong: Float,
+    indicatorSizeShort: Float,
     isLeft: Boolean = false
 ): Float {
     val textLayout = textMeasurer.measure(text = number.toString(), style = textStyle)
@@ -136,18 +150,18 @@ private fun DrawScope.drawText(
     translate(top = textHeight / 2f) {
         drawLine(
             color = strokeColor,
-            start = Offset(if (isLeft) 0f else size.width - 32.dp.toPx(), textY),
-            end = Offset(if (isLeft) 32.dp.toPx() else size.width, textY),
-            strokeWidth = strokeWidth.toPx()
+            start = Offset(if (isLeft) 0f else size.width - indicatorSizeLong, textY),
+            end = Offset(if (isLeft) indicatorSizeLong else size.width, textY),
+            strokeWidth = strokeThickness
         )
 
     }
     translate(top = spacing / 2 + textHeight) {
         drawLine(
             color = strokeColor,
-            start = Offset(if (isLeft) 0f else size.width - 16.dp.toPx(), textY),
-            end = Offset(if (isLeft) 16.dp.toPx() else size.width, textY),
-            strokeWidth = strokeWidth.toPx()
+            start = Offset(if (isLeft) 0f else size.width - indicatorSizeShort, textY),
+            end = Offset(if (isLeft) indicatorSizeShort else size.width, textY),
+            strokeWidth = strokeThickness
         )
     }
     return textLayout.size.height.toFloat() + spacing

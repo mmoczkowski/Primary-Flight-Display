@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 data class PfdDimensions(
-    val indicatorStrokeWidth: Dp,
+    val indicatorStrokeThickness: Dp,
     val indicatorSizeLong: Dp,
     val indicatorSizeShort: Dp,
     val spacingRegular: Dp,
@@ -29,13 +29,13 @@ data class PfdDimensions(
 )
 
 fun defaultPfdDimensions(
-    indicatorStrokeWidth: Dp = 2.dp,
+    indicatorStrokeThickness: Dp = 2.dp,
     indicatorSizeLong: Dp = 16.dp,
     indicatorSizeShort: Dp = 8.dp,
     spacingRegular: Dp = 8.dp,
     spacingLarge: Dp = 32.dp
 ) = PfdDimensions(
-    indicatorStrokeWidth = indicatorStrokeWidth,
+    indicatorStrokeThickness = indicatorStrokeThickness,
     indicatorSizeLong = indicatorSizeLong,
     indicatorSizeShort = indicatorSizeShort,
     spacingRegular = spacingRegular,

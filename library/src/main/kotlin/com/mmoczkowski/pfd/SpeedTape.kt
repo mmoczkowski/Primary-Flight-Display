@@ -41,35 +41,38 @@ import com.mmoczkowski.pfd.theme.PfdTheme
 @Composable
 internal fun SpeedTape(
     speed: Float,
-    targetSpeed: Int,
+    targetSpeed: Int?,
     modifier: Modifier = Modifier,
     bgColor: Color = PfdTheme.colors.bgColor,
     textStyle: TextStyle = PfdTheme.typography.regular,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
-    indicatorSize: Dp = PfdTheme.dimensions.indicatorSizeLong,
+    strokeThickness: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
+    indicatorSizeLong: Dp = PfdTheme.dimensions.indicatorSizeLong,
+    indicatorSizeShort: Dp = PfdTheme.dimensions.indicatorSizeShort,
     spacing: Dp = PfdTheme.dimensions.spacingRegular
 ) {
     Column(
         modifier = modifier
             .background(bgColor)
             .border(
-                width = strokeWidth,
+                width = strokeThickness,
                 color = strokeColor
             )
     ) {
-        Text(
-            text = "%d".format(targetSpeed),
-            style = PfdTheme.typography.large.copy(color = Color.Magenta),
-            textAlign = TextAlign.End,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(spacing)
-        )
+        if(targetSpeed != null) {
+            Text(
+                text = "%d".format(targetSpeed),
+                style = PfdTheme.typography.large.copy(color = Color.Magenta),
+                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spacing)
+            )
+        }
         Divider(
             modifier = Modifier.fillMaxWidth(),
             color = strokeColor,
-            thickness = strokeWidth
+            thickness = strokeThickness
         )
         Box(
             contentAlignment = Alignment.Center
@@ -80,14 +83,16 @@ internal fun SpeedTape(
                 spacing = spacing,
                 textStyle = textStyle,
                 strokeColor = strokeColor,
-                strokeWidth = strokeWidth,
-                isLeft = false,
+                strokeThickness = strokeThickness,
+                indicatorSizeLong = indicatorSizeLong,
+                indicatorSizeShort = indicatorSizeShort,
+                isLeftOriented = false,
                 modifier = Modifier.padding(start = spacing)
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = indicatorSize),
+                    .padding(end = indicatorSizeLong),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 DigitCounter(
@@ -98,7 +103,7 @@ internal fun SpeedTape(
                 )
                 Box(
                     modifier = Modifier
-                        .size(indicatorSize)
+                        .size(indicatorSizeLong)
                         .rotate(90f)
                         .clip(TriangleShape)
                         .background(color = strokeColor)

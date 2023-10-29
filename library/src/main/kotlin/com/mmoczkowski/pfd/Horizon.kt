@@ -43,7 +43,7 @@ internal fun Horizon(
     skyColor: Color = PfdTheme.colors.skyColor,
     groundColor: Color = PfdTheme.colors.groundColor,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
     textStyle: TextStyle = PfdTheme.typography.regular,
     spacing: Dp = PfdTheme.dimensions.spacingLarge
 ) {

@@ -66,7 +66,7 @@ fun Compass(
     courseColor: Color = PfdTheme.colors.courseColor,
     trackColor: Color = PfdTheme.colors.trackColor,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
     indicatorSize: Dp = PfdTheme.dimensions.indicatorSizeLong,
     spacing: Dp = PfdTheme.dimensions.spacingRegular
 ) {

@@ -41,17 +41,17 @@ import com.mmoczkowski.pfd.theme.defaultPfdTypography
 
 @Composable
 fun PrimaryFlightDisplay(
+    modifier: Modifier = Modifier,
     roll: Float,
     pitch: Float,
     heading: Float,
     track: Float,
     course: Float,
     altitude: Float,
-    targetAltitude: Int,
     speed: Float,
-    targetSpeed: Int,
     verticalSpeed: Float,
-    modifier: Modifier = Modifier,
+    targetAltitude: Int? = null,
+    targetSpeed: Int? = null,
     colors: PfdColors = defaultPfdColorScheme(),
     typography: PfdTypography = defaultPfdTypography(),
     dimensions: PfdDimensions = defaultPfdDimensions(),
@@ -69,13 +69,13 @@ fun PrimaryFlightDisplay(
             course = course
         )
     },
-    altitudeIndicator: @Composable (altitude: Float, targetAltitude: Int) -> Unit = { altitude, targetAltitude ->
+    altitudeIndicator: @Composable (altitude: Float, targetAltitude: Int?) -> Unit = { altitude, targetAltitude ->
         AltitudeTape(
             altitude = altitude,
             targetAltitude = targetAltitude
         )
     },
-    speedIndicator: @Composable (speed: Float, targetSpeed: Int) -> Unit = { speed, targetSpeed ->
+    speedIndicator: @Composable (speed: Float, targetSpeed: Int?) -> Unit = { speed, targetSpeed ->
         SpeedTape(
             speed = speed,
             targetSpeed = targetSpeed

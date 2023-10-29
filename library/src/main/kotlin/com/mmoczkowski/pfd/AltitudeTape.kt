@@ -41,13 +41,14 @@ import com.mmoczkowski.pfd.theme.PfdTheme
 @Composable
 fun AltitudeTape(
     altitude: Float,
-    targetAltitude: Int,
+    targetAltitude: Int?,
     modifier: Modifier = Modifier,
     bgColor: Color = PfdTheme.colors.bgColor,
     textStyle: TextStyle = PfdTheme.typography.regular,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
-    indicatorSize: Dp = PfdTheme.dimensions.indicatorSizeLong,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
+    indicatorSizeLong: Dp = PfdTheme.dimensions.indicatorSizeLong,
+    indicatorSizeShort: Dp = PfdTheme.dimensions.indicatorSizeShort,
     spacing: Dp = PfdTheme.dimensions.spacingRegular
 ) {
     Column(
@@ -58,14 +59,16 @@ fun AltitudeTape(
                 color = strokeColor
             )
     ) {
-        Text(
-            text = "%d".format(targetAltitude),
-            style = PfdTheme.typography.large.copy(color = PfdTheme.colors.courseColor),
-            textAlign = TextAlign.End,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(spacing)
-        )
+        if(targetAltitude != null) {
+            Text(
+                text = "%d".format(targetAltitude),
+                style = PfdTheme.typography.large.copy(color = PfdTheme.colors.courseColor),
+                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spacing)
+            )
+        }
         Divider(
             modifier = Modifier.fillMaxWidth(),
             color = strokeColor,
@@ -80,19 +83,21 @@ fun AltitudeTape(
                 spacing = spacing,
                 textStyle = textStyle,
                 strokeColor = strokeColor,
-                strokeWidth = strokeWidth,
-                isLeft = true,
+                strokeThickness = strokeWidth,
+                indicatorSizeLong = indicatorSizeLong,
+                indicatorSizeShort = indicatorSizeShort,
+                isLeftOriented = true,
                 modifier = Modifier.padding(end = spacing)
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = indicatorSize),
+                    .padding(start = indicatorSizeLong),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Box(
                     modifier = Modifier
-                        .size(indicatorSize)
+                        .size(indicatorSizeLong)
                         .rotate(-90f)
                         .clip(TriangleShape)
                         .background(color = strokeColor)

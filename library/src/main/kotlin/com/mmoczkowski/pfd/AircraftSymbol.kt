@@ -31,7 +31,7 @@ import com.mmoczkowski.pfd.theme.PfdTheme
 @Composable
 internal fun AircraftSymbol(
     modifier: Modifier = Modifier,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness
 ) {
     Canvas(
         modifier = modifier.fillMaxSize()

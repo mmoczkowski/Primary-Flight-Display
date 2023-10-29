@@ -42,7 +42,7 @@ internal fun BankIndicator(
     roll: Float,
     modifier: Modifier = Modifier,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
     indicatorColor: Color = PfdTheme.colors.indicatorColor,
     indicatorSizeLong: Dp = PfdTheme.dimensions.indicatorSizeLong,
     indicatorSizeShort: Dp = PfdTheme.dimensions.indicatorSizeShort

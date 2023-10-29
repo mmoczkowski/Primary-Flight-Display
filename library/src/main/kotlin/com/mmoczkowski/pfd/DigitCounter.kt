@@ -47,7 +47,7 @@ internal fun DigitCounter(
     value: Float,
     modifier: Modifier = Modifier,
     strokeColor: Color = PfdTheme.colors.indicatorColor,
-    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeWidth,
+    strokeWidth: Dp = PfdTheme.dimensions.indicatorStrokeThickness,
     spacing: Dp = PfdTheme.dimensions.spacingRegular,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Center,
     decimalCount: Int = 2,
